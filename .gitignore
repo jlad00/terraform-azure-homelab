@@ -1,0 +1,53 @@
+# Terraform state files - never commit these
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Terraform plan files - contain sensitive data
+*.tfplan
+tfplan
+
+# Terraform working directories
+**/.terraform/
+
+# Terraform lock file - commit this one (it pins provider versions)
+# !.terraform.lock.hcl
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Override files (local developer overrides, not for sharing)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Backend config files (may contain storage account names/paths)
+backend_config.hcl
+
+# Credentials and secrets - never commit these
+*.env
+.env
+Set-TerraformEnv.ps1
+*.pem
+*.key
+
+# SSH keys
+*.pub
+id_rsa
+id_ed25519
+
+# State inspection files from exercises
+tfstate-inspect.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
