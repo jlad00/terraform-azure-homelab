@@ -1008,7 +1008,7 @@ After applying, add a test secret *outside of Terraform*:
 
 ```powershell
 az keyvault secret set `
-  --vault-name "kv-homelab-dev" `
+  --vault-name "kv-kv-hl-dev-a0e41e" `
   --name "test-secret" `
   --value "this-is-not-in-terraform-state"
 ```
@@ -1017,7 +1017,7 @@ az keyvault secret set `
 
 ```powershell
 # Confirm the secret exists
-az keyvault secret show --vault-name kv-homelab-dev --name test-secret
+az keyvault secret show --vault-name kv-kv-hl-dev-a0e41e --name test-secret
 
 # Confirm it is NOT in Terraform state (inspect the state)
 terraform state show module.keyvault.azurerm_key_vault.this

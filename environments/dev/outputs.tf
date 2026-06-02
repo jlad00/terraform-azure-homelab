@@ -29,6 +29,17 @@ output "mgmt_subnet_ids" {
 }
 
 output "environment_check" {
-  description = "Confirms which environment this state is connected to"
-  value       = "Environment: ${var.environment} | RG: ${local.resource_group_name} | State key: staging/terraform.tfstate"
+  value = "Environment: ${var.environment} | RG: ${local.resource_group_name}"
+}
+
+output "vm_name" {
+  value = module.app_vm.vm_name
+}
+
+output "vm_private_ip" {
+  value = module.app_vm.private_ip
+}
+
+output "vm_principal_id" {
+  value = module.app_vm.principal_id
 }

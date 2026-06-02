@@ -104,3 +104,38 @@ module "networking_mgmt" {
     }
   ]
 }
+
+variable "ssh_public_key" {
+  description = "SSH public key for VM admin access"
+  type        = string
+  sensitive   = true
+}
+
+module "app_vm" {
+  source = "../../modules/compute"
+
+  name_prefix         = "${local.name_prefix}-app"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.main.name
+  subnet_id           = module.networking.subnet_ids["snet-app"]
+  vm_size             = local.vm_sku
+  ssh_public_key      = var.ssh_public_key
+  tags                = local.common_tags
+
+  depends_on = [module.networking]
+}
+
+module "keyvault" {
+  source = "../../modules/keyvault"
+
+  name_prefix = "kv-hl-dev-${local.unique_suffix}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.main.name
+  tags                = local.common_tags
+
+  # Grant the VM's managed identity read access
+  reader_principal_ids = [module.app_vm.principal_id]
+
+  # Allow your home IP through the firewall
+  allowed_ip_rules = ["75.84.241.3/32"]
+}

@@ -1,5 +1,5 @@
 environment  = "dev"
-location     = "eastus"
+location = "eastus2"
 project_name = "homelab"
 
 tags = {
