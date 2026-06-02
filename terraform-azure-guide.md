@@ -1079,7 +1079,7 @@ Configure federated credentials for GitHub OIDC:
 
 ```powershell
 # Replace with your GitHub username and repo name
-$GITHUB_ORG  = "your-github-username"
+$GITHUB_ORG  = "jlad00"
 $REPO_NAME   = "terraform-azure-homelab"
 
 # Federated credential for main branch (apply)
