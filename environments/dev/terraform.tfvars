@@ -1,10 +1,10 @@
 environment  = "dev"
-location = "eastus2"
+location     = "eastus2"
 project_name = "homelab"
 
 tags = {
-  CostCenter = "homelab-personal"
-  Repo       = "terraform-azure-homelab"
+  CostCenter  = "homelab-personal"
+  Repo        = "terraform-azure-homelab"
   Environment = "Dev"
-  Module7    = "ci-cd-validation" 
+  Module7     = "ci-cd-validation"
 }

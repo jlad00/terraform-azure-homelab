@@ -99,7 +99,7 @@ module "networking_mgmt" {
       protocol                   = "Tcp"
       source_port_range          = "*"
       destination_port_range     = "22"
-      source_address_prefix      = "10.10.0.0/16"   # only allow from app network
+      source_address_prefix      = "10.10.0.0/16" # only allow from app network
       destination_address_prefix = "VirtualNetwork"
     }
   ]
@@ -128,7 +128,7 @@ module "app_vm" {
 module "keyvault" {
   source = "../../modules/keyvault"
 
-  name_prefix = "kv-hl-dev-${local.unique_suffix}"
+  name_prefix         = "kv-hl-dev-${local.unique_suffix}"
   location            = var.location
   resource_group_name = azurerm_resource_group.main.name
   tags                = local.common_tags
