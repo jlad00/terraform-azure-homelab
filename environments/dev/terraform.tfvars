@@ -6,4 +6,5 @@ tags = {
   CostCenter = "homelab-personal"
   Repo       = "terraform-azure-homelab"
   Environment = "Dev"
+  Module7    = "ci-cd-validation" 
 }
