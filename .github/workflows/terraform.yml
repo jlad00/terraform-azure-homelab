@@ -63,7 +63,13 @@ jobs:
       - name: Terraform Validate
         working-directory: ${{ env.WORKING_DIR }}
         run: terraform validate
-
+      
+      - name: Security Scan (tfsec)
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          working_directory: environments/dev
+          soft_fail: true
+          
       - name: Terraform Plan
         id: plan
         working-directory: ${{ env.WORKING_DIR }}
