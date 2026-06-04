@@ -5,6 +5,10 @@ on:
     - cron: '0 8 * * 1-5'  # 8am weekdays
   workflow_dispatch:
 
+permissions:
+    id-token: write
+    contents: read
+
 jobs:
   drift-check:
     runs-on: ubuntu-latest
