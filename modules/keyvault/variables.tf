@@ -19,7 +19,7 @@ variable "soft_delete_days" {
 variable "enable_purge_protection" {
   description = "Enable purge protection (cannot be disabled once enabled)"
   type        = bool
-  default     = false   # Keep false for homelab so you can delete/recreate freely
+  default     = false # Keep false for homelab so you can delete/recreate freely
 }
 
 variable "allowed_ip_rules" {

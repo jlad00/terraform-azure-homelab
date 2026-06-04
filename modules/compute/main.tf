@@ -37,7 +37,7 @@ resource "azurerm_linux_virtual_machine" "this" {
   }
 
   identity {
-    type = "SystemAssigned"   # Always use managed identity when possible
+    type = "SystemAssigned" # Always use managed identity when possible
   }
 
   lifecycle {
