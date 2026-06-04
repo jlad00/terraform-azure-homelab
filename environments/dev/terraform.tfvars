@@ -7,3 +7,4 @@ tags = {
   Repo         = "terraform-azure-homelab"
   Environment  = "dev"
 }
+# tfsec test trigger
