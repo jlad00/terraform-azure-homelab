@@ -1,11 +1,11 @@
 output "resource_group_name" {
   description = "Name of the primary resource group"
-  value       = azurerm_resource_group.main.name
+  value       = azurerm_resource_group.primary.name
 }
 
 output "location" {
   description = "Azure region where resources are deployed"
-  value       = azurerm_resource_group.main.location
+  value       = azurerm_resource_group.primary.location
 }
 
 output "vnet_id" {

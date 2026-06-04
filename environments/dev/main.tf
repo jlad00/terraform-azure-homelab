@@ -20,7 +20,7 @@ provider "azurerm" {
   # Never hardcode credentials here
 }
 
-resource "azurerm_resource_group" "main" {
+resource "azurerm_resource_group" "primary" {
   name     = local.resource_group_name
   location = var.location
   tags     = local.common_tags
@@ -31,7 +31,7 @@ module "networking" {
 
   name_prefix         = local.name_prefix
   location            = var.location
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = azurerm_resource_group.primary.name
   tags                = local.common_tags
 
   vnet_address_space = ["10.10.0.0/16"]
@@ -76,7 +76,7 @@ module "networking_mgmt" {
 
   name_prefix         = "${local.name_prefix}-mgmt"
   location            = var.location
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = azurerm_resource_group.primary.name
   tags                = merge(local.common_tags, { NetworkTier = "management" })
 
   vnet_address_space = ["10.20.0.0/16"]
@@ -116,7 +116,7 @@ module "app_vm" {
 
   name_prefix         = "${local.name_prefix}-app"
   location            = var.location
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = azurerm_resource_group.primary.name
   subnet_id           = module.networking.subnet_ids["snet-app"]
   vm_size             = local.vm_sku
   ssh_public_key      = var.ssh_public_key
@@ -130,7 +130,7 @@ module "keyvault" {
 
   name_prefix         = "kv-hl-dev-${local.unique_suffix}"
   location            = var.location
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = azurerm_resource_group.primary.name
   tags                = local.common_tags
 
   # Grant the VM's managed identity read access
@@ -139,3 +139,15 @@ module "keyvault" {
   # Allow your home IP through the firewall
   allowed_ip_rules = ["75.84.241.3/32"]
 }
+
+resource "azurerm_storage_account" "state_backend" {
+  name                             = "sttfstate6a9b3db0"
+  resource_group_name              = "rg-terraform-state"
+  location                         = "eastus"
+  account_tier                     = "Standard"
+  account_replication_type         = "LRS"
+  min_tls_version                  = "TLS1_2"
+  allow_nested_items_to_be_public  = false
+  cross_tenant_replication_enabled = false
+}
+
